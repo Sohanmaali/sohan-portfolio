@@ -1,33 +1,38 @@
 'use client';
 
-import { FaGithub, FaLinkedin, FaTwitter, FaEnvelope, FaHome, FaUser, FaCode, FaBriefcase, FaFileAlt } from 'react-icons/fa';
+import { FaGithub, FaLinkedin, FaTwitter, FaEnvelope, FaHome, FaUser, FaCode, FaBriefcase, FaFileAlt, FaInstagram } from 'react-icons/fa';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import Link from 'next/link';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
-  
+
   const socialLinks = [
-    { 
-      name: 'GitHub', 
-      url: 'https://github.com/yourusername', 
-      icon: <FaGithub className="w-5 h-5" /> 
+    {
+      name: 'GitHub',
+      url: 'https://github.com/sohanmaali',
+      icon: <FaGithub className="w-5 h-5" />
     },
-    { 
-      name: 'LinkedIn', 
-      url: 'https://linkedin.com/in/yourusername', 
-      icon: <FaLinkedin className="w-5 h-5" /> 
+    {
+      name: 'LinkedIn',
+      url: 'https://linkedin.com/in/sohanmaali1',
+      icon: <FaLinkedin className="w-5 h-5" />
     },
-    { 
-      name: 'Twitter', 
-      url: 'https://twitter.com/yourusername', 
-      icon: <FaTwitter className="w-5 h-5" /> 
+    {
+      name: 'Twitter',
+      url: 'https://twitter.com/sohanmaali7',
+      icon: <FaTwitter className="w-5 h-5" />
     },
-    { 
-      name: 'Email', 
-      url: 'mailto:your.email@example.com', 
-      icon: <FaEnvelope className="w-5 h-5" /> 
+    {
+      name: 'Instagram',
+      url: 'https://instagram.com/sohan.maali',
+      icon: <FaInstagram className="w-5 h-5" />
+    },
+    {
+      name: 'Email',
+      url: 'mailto:sohanmaali4@gmail.com',
+      icon: <FaEnvelope className="w-5 h-5" />
     },
   ];
 
@@ -40,25 +45,24 @@ const Footer = () => {
   ];
 
   return (
-    <footer className="bg-white/80 dark:bg-gray-900/80 backdrop-blur-sm border-t border-gray-200 dark:border-gray-800 mt-12">
+    <> <footer className="bg-white/80 dark:bg-gray-900/80 backdrop-blur-sm border-t border-gray-200 dark:border-gray-800 mt-12">
       <div className="container mx-auto px-4 py-12">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
           {/* About Me */}
           <div className="space-y-4">
             <h3 className="text-lg font-semibold text-gray-900 dark:text-white">About Me</h3>
             <div className="flex items-start space-x-4">
-              <div className="relative w-20 h-20">
-                <div className="absolute inset-0 rounded-full overflow-hidden border-4 border-white/20 dark:border-gray-700/50 shadow-lg">
-                  <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-blue-100 to-purple-100 dark:from-gray-800 dark:to-gray-700">
-                    <img
-                      src="/images/profile.jpg"
-                      alt="Profile Picture"
-                      width={80}
-                      height={80}
-                      className="object-cover w-full h-full rounded-full"
-                      // placeholder="blur"                
-                    />
-                  </div>
+              <div className="relative flex-shrink-0 w-16 h-16">
+                <div className="absolute inset-0 rounded-full overflow-hidden border-[3px] border-white/20 dark:border-gray-700/50 shadow-md">
+                  <img
+                    src="/assets/images/sohan.jpg"
+                    alt="Profile Picture"
+                    width={64}
+                    height={64}
+                    className="w-full h-full object-cover"
+                    style={{ aspectRatio: '1/1' }}
+                  // placeholder="blur"
+                  />
                 </div>
                 <div className="absolute -bottom-1 -right-1 w-5 h-5 rounded-full bg-blue-500 dark:bg-blue-400 border-2 border-white dark:border-gray-800">
                   <div className="w-full h-full flex items-center justify-center">
@@ -88,7 +92,7 @@ const Footer = () => {
               ))}
             </div>
           </div>
-          
+
           {/* Quick Links */}
           <div>
             <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">Quick Links</h3>
@@ -107,7 +111,7 @@ const Footer = () => {
               ))}
             </ul>
           </div>
-          
+
           {/* Contact Info */}
           <div>
             <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">Get In Touch</h3>
@@ -125,10 +129,10 @@ const Footer = () => {
                 <FaGithub className="mt-1 mr-3 text-blue-500" />
                 <div>
                   <span className="block text-sm text-gray-600 dark:text-gray-300">GitHub</span>
-                  <Link 
-                    href="https://github.com/sohanmaali" 
-                    target="_blank" 
-                    rel="noopener noreferrer" 
+                  <Link
+                    href="https://github.com/sohanmaali"
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="text-sm text-blue-600 dark:text-blue-400 hover:underline"
                   >
                     github.com/sohanmaali
@@ -138,19 +142,19 @@ const Footer = () => {
             </ul>
           </div>
         </div>
-        
+
         <div className="pt-8 border-t border-gray-200 dark:border-gray-800">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <p className="text-sm text-gray-600 dark:text-gray-400 mb-4 md:mb-0">
-              © {currentYear} Your Name. All rights reserved.
+              © {currentYear} Sohan Maali. All rights reserved.
             </p>
             <p className="text-xs text-gray-500 dark:text-gray-500">
-              Built with Next.js, Tailwind CSS, and ❤️
+              ❤️
             </p>
           </div>
         </div>
       </div>
-    </footer>
+    </footer></>
   );
 };
 
