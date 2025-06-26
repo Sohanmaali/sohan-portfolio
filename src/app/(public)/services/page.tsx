@@ -400,7 +400,7 @@ export default function ServicesPage() {
           </div>
 
           {/* Why Choose Me Section */}
-          <div className=" py-8 bg-gradient-to-br from-blue-50 to-purple-50 dark:from-gray-800 dark:to-gray-900 rounded-3xl overflow-hidden relative">
+          <div className=" py-8 rounded-3xl overflow-hidden relative">
             {/* Decorative elements */}
             <div className="absolute inset-0 opacity-10">
               <div className="absolute -top-20 -right-20 w-64 h-64 bg-blue-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob"></div>
@@ -515,9 +515,9 @@ export default function ServicesPage() {
                     key={index}
                     variants={fadeInUp}
                     transition={{ delay: 0.3 + (index * 0.1) }}
-                    className="text-center"
+                    className="text-center card bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-lg border border-gray-100 dark:border-gray-700 hover:shadow-xl transition-all duration-300 group hover:-translate-y-1"
                   >
-                    <div className="text-5xl font-bold bg-gradient-to-r from-blue-500 to-purple-600 bg-clip-text text-transparent mb-2">
+                    <div className="text-5xl  font-bold bg-gradient-to-r from-blue-500 to-purple-600 bg-clip-text text-transparent mb-2">
                       {stat.number}
                     </div>
                     <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">

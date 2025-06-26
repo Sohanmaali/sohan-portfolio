@@ -475,8 +475,8 @@ export default function CodePage() {
   return (
     <>
 
-      <div className="min-h-screen bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-white">
-        <div className="min-h-screen bg-gradient-to-br from-gray-50 to-blue-50 py-12 mt-20 px-4 sm:px-6 lg:px-8 dark:from-gray-900 dark:to-gray-800">
+      <div className="min-h-screen  text-gray-900 dark:text-white">
+        <div className="min-h-screen py-12 mt-20 px-4 sm:px-6 lg:px-8 ">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 ">
             <motion.div
               initial={{ opacity: 0, y: 20 }}

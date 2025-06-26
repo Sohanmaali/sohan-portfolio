@@ -15,14 +15,8 @@ const socialLinks = [
 
 export default function ContactPage() {
   return (
-    <> <div className="min-h-screen mt-20 bg-gradient-to-br from-gray-950 to-gray-900 py-12 px-2 sm:px-6 lg:px-8">
-      <div className="max-w-7xl mx-auto">
-        {/* Animated Background Elements */}
-        <div className="absolute inset-0 overflow-hidden">
-          <div className="absolute -top-40 -left-40 w-80 h-80 bg-blue-500/20 rounded-full mix-blend-soft-light filter blur-3xl animate-blob"></div>
-          <div className="absolute top-1/3 -right-20 w-96 h-96 bg-purple-500/20 rounded-full mix-blend-soft-light filter blur-3xl animate-blob animation-delay-2000"></div>
-          <div className="absolute bottom-20 left-1/3 w-72 h-72 bg-indigo-500/20 rounded-full mix-blend-soft-light filter blur-3xl animate-blob animation-delay-4000"></div>
-        </div>
+    <> <div className="min-h-screen mt-20 py-12">
+      <div className="max-w-7xl ">
 
         {/* Main Content */}
         <motion.div
@@ -42,7 +36,7 @@ export default function ContactPage() {
               Let's Connect
             </motion.h1>
             <motion.p
-              className="text-lg text-gray-300 max-w-2xl mx-auto"
+              className="text-lg text-gray-800 dark:text-gray-300 max-w-2xl mx-auto"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.5, delay: 0.4 }}
@@ -100,8 +94,8 @@ export default function ContactPage() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.5 }}
               >
-                <h3 className="text-lg font-semibold text-white mb-3">Let's Work Together</h3>
-                <p className="text-gray-300 mb-4">
+                <h3 className="text-lg font-semibold dark:text-white text-gray-800 mb-3">Let's Work Together</h3>
+                <p className="text-gray-300 dark:text-white text-gray-800  mb-4">
                   I'm currently looking for new opportunities. Whether you have a question or just want to say hi,
                   I'll get back to you as soon as possible!
                 </p>

@@ -53,22 +53,22 @@ const AboutPage = () => {
   }, [controls, isInView]);
 
   const stats = [
-    { value: '5+', label: 'Years Experience', icon: <FiBriefcase className="w-6 h-6" /> },
-    { value: '50+', label: 'Projects Completed', icon: <FiCode className="w-6 h-6" /> },
-    { value: '30+', label: 'Happy Clients', icon: <FiUsers className="w-6 h-6" /> },
-    { value: '10+', label: 'Awards Won', icon: <FiAward className="w-6 h-6" /> },
+    { value: '8+', label: 'Years Experience', icon: <FiBriefcase className="w-6 h-6" /> },
+    { value: '2+', label: 'Projects Completed', icon: <FiCode className="w-6 h-6" /> },
+    { value: '10+', label: 'Happy Clients', icon: <FiUsers className="w-6 h-6" /> },
+    { value: '3+', label: 'Awards Won', icon: <FiAward className="w-6 h-6" /> },
   ];
 
   const socialLinks = [
-    { name: 'GitHub', url: 'https://github.com', icon: <FiGithub className="w-5 h-5" /> },
-    { name: 'Twitter', url: 'https://twitter.com', icon: <FiTwitter className="w-5 h-5" /> },
-    { name: 'LinkedIn', url: 'https://linkedin.com', icon: <FiLinkedin className="w-5 h-5" /> },
+    { name: 'GitHub', url: 'https://github.com/sohanmaali', icon: <FiGithub className="w-5 h-5" /> },
+    { name: 'Twitter', url: 'https://twitter.com/sohanmaali7', icon: <FiTwitter className="w-5 h-5" /> },
+    { name: 'LinkedIn', url: 'https://linkedin.com/in/sohan-maali1', icon: <FiLinkedin className="w-5 h-5" /> },
   ];
 
   return (
     <div className="min-h-screen pt-20">
       {/* Hero Section */}
-      <section className="py-16 md:py-24 bg-gradient-to-b from-blue-50 to-white dark:from-gray-900 dark:to-gray-800">
+      <section className="py-16 md:py-24 ">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <motion.div
@@ -82,7 +82,7 @@ const AboutPage = () => {
                   About Me
                 </span>
                 <h1 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">
-                  Hi, I'm <span className="text-blue-600 dark:text-blue-400">Sohan</span>
+                  Hi, I'm <span className="text-blue-600 dark:text-blue-400">Sohan Maali</span>
                 </h1>
                 <p className="text-xl text-gray-600 dark:text-gray-300 mb-8">
                   A passionate Full Stack Developer with expertise in modern web technologies and a love for creating exceptional digital experiences.
@@ -128,7 +128,7 @@ const AboutPage = () => {
                 </Link>
               </motion.div>
 
-              <motion.div variants={fadeInUp} className="flex items-center space-x-4 pt-4">
+              <motion.div variants={fadeInUp} className="flex card p-4 justify-center items-center space-x-4 pt-4">
                 <span className="text-gray-500 dark:text-gray-400">Follow me:</span>
                 <div className="flex space-x-3">
                   {socialLinks.map((social, index) => (
@@ -167,7 +167,7 @@ const AboutPage = () => {
               <div className="relative z-10 w-full max-w-md mx-auto">
                 <div className="relative aspect-square rounded-2xl overflow-hidden shadow-2xl">
                   <Image
-                    src="/images/profile-placeholder.svg"
+                    src="/assets/images/sohan.jpg"
                     alt="Sohan - Full Stack Developer"
                     width={600}
                     height={600}
@@ -196,7 +196,7 @@ const AboutPage = () => {
       </section>
 
       {/* About Content */}
-      <section className="py-20">
+      <section className="">
         <div className="max-w-4xl mx-auto px-4 sm:px-6">
           <motion.div 
             initial="hidden"
@@ -213,7 +213,7 @@ const AboutPage = () => {
 
             <motion.div variants={fadeInUp} className="space-y-6">
               <p className="text-lg text-gray-600 dark:text-gray-300">
-                Hello! I'm Sohan, a passionate Full Stack Developer with over 5 years of experience in creating exceptional digital experiences. My journey in web development started when I built my first website, and I've been hooked ever since.
+                Hello! I'm Sohan Maali, a passionate Full Stack Developer with over 2 years of experience in creating exceptional digital experiences. My journey in web development started when I built my first website, and I've been hooked ever since.
               </p>
               <p className="text-lg text-gray-600 dark:text-gray-300">
                 I specialize in building modern, responsive, and user-centric web applications using cutting-edge technologies. My approach combines clean code, performance optimization, and attention to detail to deliver high-quality solutions that exceed expectations.
@@ -230,7 +230,7 @@ const AboutPage = () => {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {[
                   'Frontend Development (React, Next.js, TypeScript)',
-                  'Backend Development (Node.js, Express, Python)',
+                  'Backend Development (Node.js, Express, Java)',
                   'Database Design & Optimization',
                   'RESTful & GraphQL APIs',
                   'Cloud & DevOps (AWS, Docker, CI/CD)',

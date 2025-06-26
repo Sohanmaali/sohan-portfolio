@@ -35,7 +35,7 @@ export default function PublicLayout({
       </main>
       <Footer />
       <div className="fixed bottom-0 right-0 z-40 flex flex-col items-end gap-4 p-4">
-        <ChatBot />
+        {/* <ChatBot /> */}
         <BackToTop />
       </div></div>
 

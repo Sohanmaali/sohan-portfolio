@@ -191,7 +191,7 @@ export default function Resume() {
   };
 
   return (
-   <> <div className="min-h-screen bg-gradient-to-br from-gray-50 to-blue-50 mt-20 py-12 px-4 sm:px-6 lg:px-8 dark:from-gray-900 dark:to-gray-800">
+   <> <div className="min-h-screen  mt-20 py-12 px-4 sm:px-6 lg:px-8 ">
    <main className="max-w-6xl mx-auto">
      {/* Header */}
      <motion.div

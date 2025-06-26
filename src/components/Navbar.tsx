@@ -6,16 +6,13 @@ import { usePathname } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FiHome, FiUser, FiFileText, FiCode, FiGithub, FiMail, FiSun, FiMoon, FiBriefcase, FiBook } from 'react-icons/fi';
 import ThemeToggle from './ThemeToggle';
-import MobileMenu from './MobileMenu';
 
 const navLinks = [
   { name: 'Home', path: '/', icon: <FiHome className="text-lg" /> },
   { name: 'About', path: '/about', icon: <FiUser className="text-lg" /> },
   { name: 'Resume', path: '/resume', icon: <FiFileText className="text-lg" /> },
   { name: 'Services', path: '/services', icon: <FiBriefcase className="text-lg" /> },
-  { name: 'Resources', path: '/resources', icon: <FiBook className="text-lg" /> },
-
-  
+  { name: 'Resources', path: '/resources', icon: <FiBook className="text-lg" /> }, 
   { name: 'Projects', path: '/projects', icon: <FiCode className="text-lg" /> },
   { name: 'Code', path: '/code', icon: <FiGithub className="text-lg" /> },
   { name: 'Contact', path: '/contact', icon: <FiMail className="text-lg" /> },
@@ -50,18 +47,19 @@ const Navbar = () => {
   if (!isMounted) return null;
 
   return (
-    <motion.nav 
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
-      transition={{ type: 'spring', stiffness: 100, damping: 20 }}
-      className={`fixed w-full z-50 transition-all duration-300 ${
-        scrolled 
-          ? 'bg-white/80 dark:bg-gray-900/80 backdrop-blur-md shadow-lg py-2' 
-          : 'bg-transparent backdrop-blur-sm py-3'
-      }`}
-      aria-label="Main navigation"
-    >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <>
+      <motion.nav 
+        initial={{ y: -100 }}
+        animate={{ y: 0 }}
+        transition={{ type: 'spring', stiffness: 100, damping: 20 }}
+        className={`fixed w-full z-50 transition-all duration-300 ${
+          scrolled 
+            ? 'bg-white/80 dark:bg-gray-900/80 backdrop-blur-md shadow-lg py-2' 
+            : 'bg-transparent backdrop-blur-sm py-3'
+        }`}
+        aria-label="Main navigation"
+      >
+      <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
           {/* Logo with animation */}
           <motion.div
@@ -147,11 +145,42 @@ const Navbar = () => {
             >
               <ThemeToggle />
             </motion.div>
-            <MobileMenu navLinks={navLinks} pathname={pathname} />
+          </div>
+        </div>
+        </div>
+      </motion.nav>
+
+      {/* Mobile Horizontal Scroll Navigation */}
+      <div className="fixed bottom-0 left-0 right-0 z-40 bg-white/90 dark:bg-gray-900/95 backdrop-blur-lg border-t border-gray-200/70 dark:border-gray-700/70 shadow-xl md:hidden">
+        <div className="relative">
+          {/* Gradient overlays for better scroll indication */}
+          <div className="absolute left-0 top-0 bottom-0 w-8 bg-gradient-to-r from-white dark:from-gray-900 to-transparent z-10 pointer-events-none"></div>
+          <div className="absolute right-0 top-0 bottom-0 w-8 bg-gradient-to-l from-white dark:from-gray-900 to-transparent z-10 pointer-events-none"></div>
+          
+          <div className="flex items-center py-3 overflow-x-auto scrollbar-hide px-4 space-x-2">
+            {navLinks.map((link) => (
+              <motion.div
+                key={`mobile-${link.name}`}
+                whileTap={{ scale: 0.95 }}
+                className="flex-shrink-0"
+              >
+                <Link
+                  href={link.path}
+                  className={`flex flex-col items-center justify-center px-4 py-2 rounded-xl text-sm font-medium transition-all duration-200 whitespace-nowrap ${
+                    isActive(link.path)
+                      ? 'text-white bg-gradient-to-r from-blue-500 to-purple-600 shadow-md scale-105'
+                      : 'text-gray-700 dark:text-gray-300 bg-gray-100/80 dark:bg-gray-800/80 hover:bg-gray-200/80 dark:hover:bg-gray-700/80'
+                  }`}
+                >
+                  <span className="text-lg">{link.icon}</span>
+                  <span className="text-xs mt-1">{link.name}</span>
+                </Link>
+              </motion.div>
+            ))}
           </div>
         </div>
       </div>
-    </motion.nav>
+    </>
   );
 };
 
