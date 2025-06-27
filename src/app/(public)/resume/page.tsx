@@ -5,6 +5,9 @@ import { SiTypescript, SiNextdotjs, SiTailwindcss, SiMongodb, SiPostgresql, SiDo
 import { motion, useAnimation, useInView } from 'framer-motion';
 import React, { useEffect, useRef, useState, useCallback, useMemo } from 'react';
 import Link from 'next/link';
+import SkillsSection from '@/components/resume/SkillsSection';
+import Experience from '@/components/resume/Experience';
+import Education from '@/components/resume/Education';
 
 const skills = [
   {
@@ -149,8 +152,8 @@ export default function Resume() {
   const [hoveredSkillId, setHoveredSkillId] = useState<number | null>(null);
 
   const filteredSkills = useMemo(() => {
-    return activeCategory === 'all' 
-      ? skills 
+    return activeCategory === 'all'
+      ? skills
       : skills.filter(skill => skill.category === activeCategory);
   }, [activeCategory]);
 
@@ -191,260 +194,53 @@ export default function Resume() {
   };
 
   return (
-   <> <div className="min-h-screen  mt-20 py-12 px-4 sm:px-6 lg:px-8 ">
-   <main className="max-w-6xl mx-auto">
-     {/* Header */}
-     <motion.div
-       initial={{ opacity: 0, y: -20 }}
-       animate={{ opacity: 1, y: 0 }}
-       className="text-center mb-12 relative"
-     >
-       <h1 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-3">My Professional Journey</h1>
-       <p className="text-xl text-gray-600 dark:text-gray-300 mb-6">Education & Work Experience</p>
-       <button
-         onClick={handleDownload}
-         className="inline-flex items-center px-6 py-3 bg-blue-600 text-white rounded-full hover:bg-blue-700 transition-colors duration-300 shadow-lg hover:shadow-xl"
-       >
-         <FaDownload className="mr-2" />
-         Download Resume
-       </button>
-     </motion.div>
+    <> <div className="min-h-screen  mt-20 py-12 px-4 sm:px-6 lg:px-8 dark:from-gray-900 dark:to-gray-800">
+      <main className="max-w-6xl mx-auto">
+        {/* Header */}
+        <motion.div
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="text-center mb-12 relative"
+        >
+          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-3">My Professional Journey</h1>
+          <p className="text-xl text-gray-600 dark:text-gray-300 mb-6">Education & Work Experience</p>
+          <button
+            onClick={handleDownload}
+            className="inline-flex items-center px-6 py-3 bg-blue-600 text-white rounded-full hover:bg-blue-700 transition-colors duration-300 shadow-lg hover:shadow-xl"
+          >
+            <FaDownload className="mr-2" />
+            Download Resume
+          </button>
+        </motion.div>
 
-     {/* Education Section */}
-     <motion.section 
-       initial={{ opacity: 0, y: 20 }}
-       whileInView={{ opacity: 1, y: 0 }}
-       viewport={{ once: true }}
-       className="mb-20"
-     >
-       <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-8 flex items-center">
-         <FaGraduationCap className="mr-2 text-blue-600" />
-         Education
-       </h2>
-       <div className="space-y-8">
-         {education.map((edu) => (
-           <motion.div
-             key={edu.id}
-             initial={{ opacity: 0, x: -20 }}
-             whileInView={{ opacity: 1, x: 0 }}
-             viewport={{ once: true }}
-             className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-md hover:shadow-lg transition-shadow"
-           >
-             <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 mb-4">
-               <div className="flex-1">
-                 <h3 className="text-xl font-bold text-gray-900 dark:text-white">{edu.degree}</h3>
-               </div>
-               <div className="flex-shrink-0">
-                 <span className="inline-block px-3 py-1.5 text-sm font-semibold text-blue-600 dark:text-blue-400 bg-blue-100 dark:bg-blue-900/30 rounded-full whitespace-nowrap">
-                   {edu.year}
-                 </span>
-               </div>
-             </div>
-             <p className="text-lg text-blue-600 dark:text-blue-400 mb-3">{edu.institution}</p>
-             <p className="text-gray-600 dark:text-gray-300 mb-4">{edu.description}</p>
-             <ul className="space-y-2">
-               {edu.achievements.map((achievement, index) => (
-                 <li key={index} className="flex items-start">
-                   <span className="text-blue-500 mr-2">•</span>
-                   <span className="text-gray-600 dark:text-gray-300">{achievement}</span>
-                 </li>
-               ))}
-             </ul>
-           </motion.div>
-         ))}
-       </div>
-     </motion.section>
+        {/* Education Section */}
+        <Education />
 
-     {/* Experience Section */}
-     <motion.section 
-       initial={{ opacity: 0, y: 20 }}
-       whileInView={{ opacity: 1, y: 0 }}
-       viewport={{ once: true }}
-       className="mb-20"
-     >
-       <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-8 flex items-center">
-         <FaBriefcase className="mr-2 text-blue-600" />
-         Work Experience
-       </h2>
-       <div className="space-y-8">
-         {experience.map((exp) => (
-           <motion.div
-             key={exp.id}
-             initial={{ opacity: 0, x: 20 }}
-             whileInView={{ opacity: 1, x: 0 }}
-             viewport={{ once: true }}
-             className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-md hover:shadow-lg transition-shadow"
-           >
-             <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 mb-4">
-               <div className="flex-1">
-                 <h3 className="text-xl font-bold text-gray-900 dark:text-white">{exp.role}</h3>
-               </div>
-               <div className="flex-shrink-0">
-                 <span className="inline-block px-3 py-1.5 text-sm font-semibold text-blue-600 dark:text-blue-400 bg-blue-100 dark:bg-blue-900/30 rounded-full whitespace-nowrap">
-                   {exp.year}
-                 </span>
-               </div>
-             </div>
-             <p className="text-lg text-blue-600 dark:text-blue-400 mb-3">{exp.company}</p>
-             <p className="text-gray-600 dark:text-gray-300 mb-4">{exp.description}</p>
-             <ul className="space-y-2">
-               {exp.responsibilities.map((responsibility, index) => (
-                 <li key={index} className="flex items-start">
-                   <span className="text-blue-500 mr-2">•</span>
-                   <span className="text-gray-600 dark:text-gray-300">{responsibility}</span>
-                 </li>
-               ))}
-             </ul>
-           </motion.div>
-         ))}
-       </div>
-     </motion.section>
+        {/* Experience Section */}
+        <Experience />
 
-     {/* Skills Section */}
-     <motion.section 
-       initial={{ opacity: 0, y: 20 }}
-       whileInView={{ opacity: 1, y: 0 }}
-       viewport={{ once: true }}
-       className="mb-20"
-     >
-       <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-8">My Skills</h2>
-       <div className="flex flex-col md:flex-row gap-8">
-         {/* Skills List */}
-         <div className="w-full md:w-1/2">
-           {/* Category Filters */}
-           <div className="grid grid-cols-2 sm:flex sm:flex-wrap gap-2 mb-6">
-             {categories.map((category) => (
-               <button
-                 key={category.id}
-                 onClick={() => handleCategoryChange(category.id)}
-                 className={`flex items-center px-4 py-2 rounded-full text-sm font-medium transition-colors ${
-                   activeCategory === category.id
-                     ? 'bg-blue-600 text-white'
-                     : 'bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700'
-                 }`}
-               >
-                 <span className="mr-2">{category.icon}</span>
-                 {category.name}
-               </button>
-             ))}
-           </div>
+        {/* Skills Section */}
+        <SkillsSection />
 
-           {/* Skills Grid */}
-           <motion.div
-             variants={containerVariants}
-             initial="hidden"
-             animate="show"
-             className="grid grid-cols-2 md:grid-cols-3 gap-4"
-           >
-             {filteredSkills.map((skill) => (
-               <motion.div
-                 key={skill.id}
-                 variants={itemVariants}
-                 whileHover={{ scale: 1.05 }}
-                 onMouseEnter={() => handleSkillHover(skill.id)}
-                 onMouseLeave={() => handleSkillHover(null)}
-                 className={`p-4 rounded-lg transition-all cursor-pointer ${
-                   hoveredSkillId === skill.id
-                     ? 'bg-white dark:bg-gray-700 shadow-lg ring-2 ring-blue-500'
-                     : 'bg-white dark:bg-gray-800 shadow-md hover:shadow-lg'
-                 }`}
-               >
-                 <div className="flex flex-col items-center">
-                   <div className="w-12 h-12 flex items-center justify-center mb-2">
-                     {skill.icon}
-                   </div>
-                   <h3 className="font-medium text-center">{skill.name}</h3>
-                   <div className="w-full mt-2">
-                     <div className="h-1.5 bg-gray-200 dark:bg-gray-600 rounded-full overflow-hidden">
-                       <motion.div 
-                         className="h-full bg-blue-500"
-                         initial={{ width: 0 }}
-                         animate={{ width: `${skill.level}%` }}
-                         transition={{ duration: 1, delay: 0.2 }}
-                       />
-                     </div>
-                     <span className="text-xs text-gray-500 dark:text-gray-300 mt-1 block text-center">
-                       {skill.level}%
-                     </span>
-                   </div>
-                 </div>
-               </motion.div>
-             ))}
-           </motion.div>
-         </div>
-
-         {/* Skill Details */}
-         <div className="w-full md:w-1/2">
-           <motion.div 
-             className="sticky top-6 bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg h-fit transition-all duration-300"
-             initial={{ opacity: 0, x: 20 }}
-             animate={{ 
-               opacity: currentHoveredSkill ? 1 : 0.8,
-               x: 0,
-               transition: { duration: 0.3 }
-             }}
-           >
-             {currentHoveredSkill ? (
-               <div className="text-center">
-                 <div className="w-24 h-24 mx-auto mb-6 flex items-center justify-center bg-white dark:bg-gray-800 rounded-2xl shadow-lg">
-                   {currentHoveredSkill.icon}
-                 </div>
-                 <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-3">
-                   {currentHoveredSkill.name}
-                 </h3>
-                 <div className="w-32 h-1 bg-gradient-to-r from-blue-500 to-purple-600 mx-auto mb-6 rounded-full"></div>
-                 <p className="text-gray-600 dark:text-gray-300 mb-6">
-                   {currentHoveredSkill.description}
-                 </p>
-                 <div className="flex flex-wrap justify-center gap-2">
-                   {currentHoveredSkill.keywords.map((keyword, index) => (
-                     <span 
-                       key={index}
-                       className="px-3 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-200 text-xs rounded-full"
-                     >
-                       {keyword}
-                     </span>
-                   ))}
-                 </div>
-               </div>
-             ) : (
-               <div className="text-center">
-                 <div className="w-24 h-24 mx-auto mb-6 flex items-center justify-center bg-white dark:bg-gray-800 rounded-2xl shadow-lg">
-                   <FaLaptopCode className="w-12 h-12 text-purple-500" />
-                 </div>
-                 <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-3">
-                   My Skills
-                 </h3>
-                 <div className="w-32 h-1 bg-gradient-to-r from-blue-500 to-purple-600 mx-auto mb-6 rounded-full"></div>
-                 <p className="text-gray-600 dark:text-gray-300 px-4">
-                   Hover over any skill to see detailed information about my experience, proficiency level, and how I apply these technologies in real-world projects.
-                 </p>
-               </div>
-             )}
-           </motion.div>
-         </div>
-       </div>
-     </motion.section>
-
-     {/* Call to Action */}
-     <motion.div
-       initial={{ opacity: 0, y: 20 }}
-       whileInView={{ opacity: 1, y: 0 }}
-       viewport={{ once: true }}
-       className="text-center mt-20"
-     >
-       <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">Let's Work Together</h3>
-       <p className="text-gray-600 dark:text-gray-300 mb-6 max-w-2xl mx-auto">
-         Interested in working together? I'm always open to discussing product design work or partnership opportunities.
-       </p>
-       <Link
-         href="/contact"
-         className="inline-flex items-center px-8 py-3 bg-blue-600 text-white rounded-full hover:bg-blue-700 transition-colors duration-300 text-lg font-medium shadow-lg hover:shadow-xl"
-       >
-         Get In Touch
-       </Link>
-     </motion.div>
-   </main>
- </div></>
+        {/* Call to Action */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="text-center mt-20"
+        >
+          <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">Let's Work Together</h3>
+          <p className="text-gray-600 dark:text-gray-300 mb-6 max-w-2xl mx-auto">
+            Interested in working together? I'm always open to discussing product design work or partnership opportunities.
+          </p>
+          <Link
+            href="/contact"
+            className="inline-flex items-center px-8 py-3 bg-blue-600 text-white rounded-full hover:bg-blue-700 transition-colors duration-300 text-lg font-medium shadow-lg hover:shadow-xl"
+          >
+            Get In Touch
+          </Link>
+        </motion.div>
+      </main>
+    </div></>
   );
 }
