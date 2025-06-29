@@ -1,7 +1,6 @@
 'use client';
 
 import { useState } from 'react';
-import { motion } from 'framer-motion';
 import { FiMail, FiPhone, FiMapPin } from 'react-icons/fi';
 
 const ContactCard = () => {
@@ -28,59 +27,53 @@ const ContactCard = () => {
   ];
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      whileHover={{ y: -5 }}
-      transition={{ type: 'spring', stiffness: 400, damping: 15 }}
+    <div
       className="relative bg-gray-900/70 backdrop-blur-sm rounded-2xl p-8 border border-gray-800/50 shadow-xl overflow-hidden"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      <motion.div 
+      <div
         className="absolute inset-0 bg-gradient-to-br from-blue-500/10 via-purple-500/10 to-indigo-500/10"
-        animate={{
+        style={{
           backgroundPosition: isHovered ? '100% 100%' : '0% 0%',
-        }}
-        transition={{
-          duration: 8,
-          ease: 'linear',
-          repeat: Infinity,
-          repeatType: 'reverse',
+          transition: 'background-position 8s linear infinite',
         }}
       />
 
       <div className="relative z-10">
-        <motion.div
+        <div
           className="inline-block mb-6 p-3 rounded-xl bg-gradient-to-br from-blue-500/20 to-purple-500/20"
-          whileHover={{ rotate: 10 }}
-          transition={{ type: 'spring', stiffness: 300 }}
+          style={{
+            transform: isHovered ? 'rotate(10deg)' : 'rotate(0deg)',
+            transition: 'transform 0.3s ease-in-out',
+          }}
         >
           <div className="w-12 h-12 bg-gradient-to-br from-blue-400 to-purple-500 rounded-lg flex items-center justify-center text-white">
             <FiMail className="text-xl" />
           </div>
-        </motion.div>
-        
+        </div>
+
         <h2 className="text-2xl font-bold text-white mb-1">
           Contact Information
         </h2>
-        
+
         <p className="text-gray-400 mb-8">
           Feel free to reach out for any questions or opportunities.
         </p>
-        
+
         <div className="space-y-4">
           {contactInfo.map((item, index) => (
-            <motion.a
+            <a
               key={item.label}
               href={item.href}
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-start p-4 rounded-xl bg-gray-800/50 hover:bg-gray-800/70 transition-colors duration-300 group"
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.4 + (index * 0.1) }}
-              whileHover={{ x: 5 }}
+              style={{
+                opacity: isHovered ? 1 : 0,
+                transform: isHovered ? 'translateY(0)' : 'translateY(10px)',
+                transition: 'opacity 0.3s ease-in-out, transform 0.3s ease-in-out',
+              }}
             >
               <div className="p-2 rounded-lg bg-gray-700/50 group-hover:bg-gradient-to-br from-blue-500/20 to-purple-500/20 transition-colors duration-300 mr-4">
                 {item.icon}
@@ -89,11 +82,11 @@ const ContactCard = () => {
                 <div className="text-sm text-gray-400">{item.label}</div>
                 <div className="text-white font-medium">{item.value}</div>
               </div>
-            </motion.a>
+            </a>
           ))}
         </div>
       </div>
-    </motion.div>
+    </div>
   );
 };
 

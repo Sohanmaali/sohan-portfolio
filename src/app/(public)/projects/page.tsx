@@ -1,11 +1,10 @@
-'use client';
-
+"use client"
 import { useState } from 'react';
 import Link from 'next/link';
-import { FaGithub, FaExternalLinkAlt, FaCode, FaServer, FaMobile, FaLaptopCode, FaBriefcase } from 'react-icons/fa';
-import { motion } from 'framer-motion';
-import { SiReact, SiNextdotjs, SiNodedotjs, SiMongodb, SiTailwindcss, SiTypescript, SiFirebase } from 'react-icons/si';
-import Image from 'next/image';
+import { FaBriefcase } from 'react-icons/fa';
+
+import ProjectCard from '@/components/project/ProjectCard';
+import Button from '@/components/Button';
 
 const projects = [
   {
@@ -50,76 +49,6 @@ const projects = [
   },
 ];
 
-const ProjectCard = ({ project }: { project: typeof projects[0] }) => {
-  return (
-    <motion.div
-      className="bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-300"
-      whileHover={{ y: -5 }}
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.5 }}
-    >
-      <div className="h-48 bg-gray-200 dark:bg-gray-700 relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-blue-500/20 to-purple-500/20"></div>
-        <div className="absolute inset-0 flex items-center justify-center">
-          <FaLaptopCode className="w-16 h-16 text-gray-300 dark:text-gray-600" />
-
-
-          <div className="w-16 h-16 text-gray-300 dark:text-gray-600">
-
-            <Image
-              src={project.image}
-              alt={project.title}
-              fill
-              className="object-cover"
-            />
-          </div>
-        </div>
-      </div>
-
-      <div className="p-6">
-        <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">{project.title}</h3>
-        <p className="text-gray-600 dark:text-gray-300 mb-4">{project.description}</p>
-
-
-
-        <div className="flex flex-wrap gap-2 mb-4">
-          {project.tags.map((tag, index) => (
-            <span
-              key={index}
-              className="px-3 py-1 text-xs font-medium bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-200 rounded-full"
-            >
-              {tag}
-            </span>
-          ))}
-        </div>
-
-        <div className="flex justify-between items-center mt-4">
-          <Link
-            href={project.github}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
-          >
-            <FaGithub className="mr-2" />
-            Code
-          </Link>
-          <Link
-            href={project.demo}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
-          >
-            <FaExternalLinkAlt className="mr-2" />
-            Live Demo
-          </Link>
-        </div>
-      </div>
-    </motion.div>
-  );
-};
-
 const allTechnologies = ['React', 'Next.js', 'Node.js', 'MongoDB', 'TypeScript', 'Firebase', 'Tailwind CSS', 'React Native', 'Redux'];
 
 export default function ProjectsPage() {
@@ -157,11 +86,9 @@ export default function ProjectsPage() {
   });
 
   return (
-    <div className="min-h-screen  py-12 mt-20 px-4 sm:px-6 lg:px-8 ">
-      <main className="max-w-7xl mx-auto">
-        <motion.div
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
+    <div className="min-h-screen  py-12 mt-10 px-4 sm:px-6 lg:px-8 ">
+      <main className="max-w-8xl mx-auto">
+        <div
           className="text-center mb-12 relative"
         >
           <h1 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-3">My Projects</h1>
@@ -222,7 +149,7 @@ export default function ProjectsPage() {
               View My Resume
             </Link>
           </div>
-        </motion.div>
+        </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
           {filteredProjects.length > 0 ? (
@@ -243,24 +170,19 @@ export default function ProjectsPage() {
           )}
         </div>
 
-        <motion.div
+        <div
           className="text-center mt-16"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.2 }}
         >
           <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">Have a project in mind?</h3>
           <p className="text-gray-600 dark:text-gray-300 mb-6 max-w-2xl mx-auto">
             I'm always open to discussing product design work or partnership opportunities.
           </p>
-          <Link
+
+          <Button
+            text="Get In Touch"
             href="/contact"
-            className="inline-flex items-center px-8 py-3 bg-blue-600 text-white rounded-full hover:bg-blue-700 transition-colors duration-300 text-lg font-medium shadow-lg hover:shadow-xl"
-          >
-            Get In Touch
-          </Link>
-        </motion.div>
+          />
+        </div>
       </main>
     </div>
   );

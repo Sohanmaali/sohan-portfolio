@@ -1,7 +1,6 @@
 'use client';
 
 import { FiGithub, FiStar, FiGitBranch, FiCode, FiSearch } from 'react-icons/fi';
-import { motion } from 'framer-motion';
 import Link from 'next/link';
 
 interface Repository {
@@ -48,12 +47,8 @@ const Repositories = ({
       {/* Repositories Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {filteredRepos.map((repo) => (
-          <motion.div
+          <div
             key={repo.id}
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.3 }}
             className="bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-300"
           >
             <div className="p-6">
@@ -102,7 +97,7 @@ const Repositories = ({
                 <span>Updated {repo.updated}</span>
               </div>
             </div>
-          </motion.div>
+          </div>
         ))}
       </div>
     </div>

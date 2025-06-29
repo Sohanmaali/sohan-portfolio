@@ -1,39 +1,32 @@
-import { motion } from 'framer-motion';
-
 export default function ProcessSection() {
     return (
         <>      <div className=" py-10">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <motion.div
-                    initial="hidden"
-                    whileInView="visible"
-                    viewport={{ once: true }}
-                    variants={{
-                        hidden: { opacity: 0, y: 20 },
-                        visible: {
-                            opacity: 1,
-                            y: 0,
-                            transition: { duration: 0.6 }
-                        }
-                    }}
-                    className="text-center mb-16"
-                >
-                    <motion.span
-                        className="inline-block px-4 py-2 text-sm font-medium bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded-full mb-4"
-                    >
+            <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div className="text-center mb-16">
+                    <span className="inline-block px-4 py-2 text-sm font-medium bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded-full mb-4">
                         My Process
-                    </motion.span>
-                    <motion.h2
-                        className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4"
-                    >
+                    </span>
+                    <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
                         How I Work
-                    </motion.h2>
-                    <motion.p className="max-w-2xl mx-auto text-lg text-gray-600 dark:text-gray-300">
+                    </h2>
+                    <p className="max-w-2xl mx-auto text-lg text-gray-600 dark:text-gray-300">
                         A transparent and collaborative approach to bringing your ideas to life
-                    </motion.p>
-                </motion.div>
+                    </p>
+                </div>
 
-                <div className="relative">
+                <div className="relative mb-16">
+                    <span className="inline-block px-4 py-2 text-sm font-medium bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded-full mb-4">
+                        My Process
+                    </span>
+                    <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
+                        How I Work
+                    </h2>
+                    <p className="max-w-2xl mx-auto text-lg text-gray-600 dark:text-gray-300">
+                        A transparent and collaborative approach to bringing your ideas to life
+                    </p>
+                </div>
+
+                <div className="relative mb-16">
                     {/* Horizontal timeline line */}
                     <div className="hidden lg:block absolute left-0 right-0 top-1/2 h-1 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 transform -translate-y-1/2 z-0"></div>
 
@@ -103,12 +96,8 @@ export default function ProcessSection() {
                                 delay: 0.5
                             }
                         ].map((step, index) => (
-                            <motion.div
+                            <div
                                 key={step.step}
-                                initial={{ opacity: 0, y: 30 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ duration: 0.5, delay: step.delay }}
                                 className="group"
                             >
                                 <div className="relative bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-xl border border-gray-100 dark:border-gray-700 hover:shadow-2xl transition-all duration-300 h-full flex flex-col">
@@ -137,7 +126,7 @@ export default function ProcessSection() {
                                         </svg>
                                     </div>
                                 </div>
-                            </motion.div>
+                            </div>
                         ))}
                     </div>
                 </div>

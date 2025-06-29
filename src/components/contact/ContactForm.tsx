@@ -2,7 +2,6 @@
 
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { motion, AnimatePresence } from 'framer-motion';
 import { FiSend } from 'react-icons/fi';
 
 type FormData = {
@@ -46,44 +45,26 @@ const ContactForm = () => {
 
   return (
     <div className="bg-gray-900/70 backdrop-blur-sm rounded-2xl  border border-gray-800/50 shadow-xl">
-      <motion.div
+      <div
         className="flex items-center mb-4 p-6"
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
       >
         <h2 className="text-2xl font-bold text-white">Send Me a Message</h2>
-        <motion.div
+        <div
           className="ml-4"
-          animate={{
-            y: [0, -5, 0],
-            rotate: [0, 10, -5, 0]
-          }}
-          transition={{
-            duration: 3,
-            repeat: Infinity,
-            repeatType: "reverse",
-            ease: "easeInOut"
-          }}
+
         >
           <FiSend className="text-3xl text-blue-500" />
-        </motion.div>
-      </motion.div>
+        </div>
+      </div>
 
-      <motion.p
+      <p
         className="text-sm sm:text-base text-gray-400 mb-4 sm:ml-8 sm:mb-6 text-center sm:text-left"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.2, duration: 0.5 }}
       >
         I'll get back to you as soon as possible.
-      </motion.p>
+      </p>
 
-      <div className="p-2"> <motion.div
+      <div className="p-2"> <div
         className="w-full rounded-2xl p-3 sm:p-4 md:p-6"
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.3, duration: 0.5 }}
       >
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
@@ -184,28 +165,21 @@ const ContactForm = () => {
             )}
           </div>
 
-          <AnimatePresence>
-            {isSuccess && (
-              <motion.div
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -10 }}
-                className="p-4 bg-green-500/10 border border-green-500/30 rounded-lg text-green-400 text-sm"
-              >
-                Your message has been sent successfully! I'll get back to you soon.
-              </motion.div>
-            )}
-          </AnimatePresence>
+          {isSuccess && (
+            <div
+              className="p-4 bg-green-500/10 border border-green-500/30 rounded-lg text-green-400 text-sm"
+            >
+              Your message has been sent successfully! I'll get back to you soon.
+            </div>
+          )}
 
-          <motion.button
+          <button
             type="submit"
             disabled={isSubmitting}
             className={`w-full py-2.5 sm:py-3 px-4 sm:px-6 rounded-lg font-medium text-white flex items-center justify-center space-x-2 text-sm sm:text-base ${isSubmitting
-                ? 'bg-blue-600/50 cursor-not-allowed'
-                : 'bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-500 hover:to-blue-600 transition-all duration-300'
+              ? 'bg-blue-600/50 cursor-not-allowed'
+              : 'bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-500 hover:to-blue-600 transition-all duration-300'
               }`}
-            whileHover={!isSubmitting ? { scale: 1.02 } : {}}
-            whileTap={!isSubmitting ? { scale: 0.98 } : {}}
           >
             {isSubmitting ? (
               <>
@@ -221,9 +195,9 @@ const ContactForm = () => {
                 <span>Send Message</span>
               </>
             )}
-          </motion.button>
+          </button>
         </form>
-      </motion.div></div>
+      </div></div>
     </div>
   );
 };

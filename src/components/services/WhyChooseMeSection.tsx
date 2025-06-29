@@ -1,15 +1,4 @@
-import { motion } from 'framer-motion';
-const fadeInUp = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-        opacity: 1,
-        y: 0,
-        transition: {
-            duration: 0.6,
-            ease: [0.16, 1, 0.3, 1]
-        }
-    }
-};
+
 export default function WhyChooseMeSection() {
     return (
         <>
@@ -22,26 +11,17 @@ export default function WhyChooseMeSection() {
                     <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-pink-500 rounded-full mix-blend-multiply filter blur-3xl opacity-10 animate-blob animation-delay-4000"></div>
                 </div>
 
-                <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div className="relative max-w-8xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="text-center mb-16">
-                        <motion.span
-                            variants={fadeInUp}
-                            className="inline-block px-4 py-2 text-sm font-medium bg-white dark:bg-gray-700 text-blue-600 dark:text-blue-400 rounded-full mb-4 shadow-sm"
-                        >
+                        <span className="inline-block px-4 py-2 text-sm font-medium bg-white dark:bg-gray-700 text-blue-600 dark:text-blue-400 rounded-full mb-4 shadow-sm">
                             Why Choose Me
-                        </motion.span>
-                        <motion.h2
-                            variants={fadeInUp}
-                            className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-6"
-                        >
+                        </span>
+                        <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-6">
                             What Makes Me Different
-                        </motion.h2>
-                        <motion.p
-                            variants={fadeInUp}
-                            className="max-w-2xl mx-auto text-lg text-gray-600 dark:text-gray-300"
-                        >
+                        </h2>
+                        <p className="max-w-2xl mx-auto text-lg text-gray-600 dark:text-gray-300">
                             I combine technical expertise with a passion for creating exceptional digital experiences that drive results.
-                        </motion.p>
+                        </p>
                     </div>
 
                     <div className="grid md:grid-cols-3 gap-8">
@@ -80,10 +60,8 @@ export default function WhyChooseMeSection() {
                                 statLabel: 'Uptime Guarantee'
                             }
                         ].map((item, index) => (
-                            <motion.div
+                            <div
                                 key={index}
-                                variants={fadeInUp}
-                                transition={{ delay: index * 0.1 }}
                                 className="bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-lg border border-gray-100 dark:border-gray-700 hover:shadow-xl transition-all duration-300 group hover:-translate-y-1"
                             >
                                 <div className="w-16 h-16 rounded-2xl bg-blue-50 dark:bg-blue-900/30 flex items-center justify-center mb-6 mx-auto group-hover:scale-110 transition-transform duration-300">
@@ -103,7 +81,7 @@ export default function WhyChooseMeSection() {
                                         {item.statLabel}
                                     </p>
                                 </div>
-                            </motion.div>
+                            </div>
                         ))}
                     </div>
 
@@ -125,10 +103,8 @@ export default function WhyChooseMeSection() {
                                 description: 'Building cutting-edge digital solutions'
                             }
                         ].map((stat, index) => (
-                            <motion.div
+                            <   div
                                 key={index}
-                                variants={fadeInUp}
-                                transition={{ delay: 0.3 + (index * 0.1) }}
                                 className="text-center card bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-lg border border-gray-100 dark:border-gray-700 hover:shadow-xl transition-all duration-300 group hover:-translate-y-1"
                             >
                                 <div className="text-5xl  font-bold bg-gradient-to-r from-blue-500 to-purple-600 bg-clip-text text-transparent mb-2">
@@ -140,7 +116,7 @@ export default function WhyChooseMeSection() {
                                 <p className="text-gray-500 dark:text-gray-400">
                                     {stat.description}
                                 </p>
-                            </motion.div>
+                            </div>
                         ))}
                     </div>
                 </div>

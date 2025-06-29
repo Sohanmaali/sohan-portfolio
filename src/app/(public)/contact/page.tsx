@@ -1,10 +1,7 @@
-"use client";
-
-import { useState } from 'react';
-import { motion } from 'framer-motion';
 import { FiGithub, FiLinkedin, FiTwitter, FiMail, FiInstagram } from 'react-icons/fi';
-import ContactCard from './ContactCard';
-import ContactForm from './ContactForm';
+import ContactCard from '../../../components/contact/ContactCard';
+import ContactForm from '../../../components/contact/ContactForm';
+import Link from 'next/link';
 
 const socialLinks = [
   { icon: <FiGithub />, url: 'https://github.com/sohanmaali', label: 'GitHub' },
@@ -15,35 +12,20 @@ const socialLinks = [
 
 export default function ContactPage() {
   return (
-    <> <div className="min-h-screen mt-20 py-12">
-      <div className="max-w-7xl ">
+    <> <div className="min-h-screen  mt-10 py-12 px-4 sm:px-6 lg:px-8 dark:from-gray-900 dark:to-gray-800">
+      <div className="max-w-8xl ">
 
         {/* Main Content */}
-        <motion.div
-          className="relative z-10"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-        >
+        <div className="relative z-10">
           {/* Page Header */}
           <div className="text-center mb-16">
-            <motion.h1
-              className="text-4xl md:text-6xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-500 mb-4"
-              initial={{ opacity: 0, y: -20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-            >
+            <h1 className="text-4xl md:text-6xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-500 mb-4">
               Let's Connect
-            </motion.h1>
-            <motion.p
-              className="text-lg text-gray-800 dark:text-gray-300 max-w-2xl mx-auto"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.5, delay: 0.4 }}
-            >
+            </h1>
+            <p className="text-lg text-gray-800 dark:text-gray-300 max-w-2xl mx-auto">
               Have a project in mind or want to collaborate? I'd love to hear from you.
               Let's create something amazing together!
-            </motion.p>
+            </p>
           </div>
 
           {/* Contact Content */}
@@ -53,65 +35,51 @@ export default function ContactPage() {
               <ContactForm />
 
               {/* Social Links */}
-              <motion.div
+              <div
                 className="mt-8 p-6 bg-gray-900/50 backdrop-blur-sm rounded-2xl border border-gray-800/50"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.3 }}
+
               >
                 <h3 className="text-lg font-semibold text-white mb-4">Follow Me :</h3>
                 <div className="flex flex-wrap gap-3">
                   {socialLinks.map((social, index) => (
-                    <motion.a
+                    <Link
                       key={index}
                       href={social.url}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="w-12 h-12 rounded-xl bg-gray-800/50 hover:bg-gray-800/80 flex items-center justify-center text-gray-300 hover:text-white transition-colors"
-                      whileHover={{ y: -3, scale: 1.05 }}
-                      whileTap={{ scale: 0.95 }}
+
                       aria-label={social.label}
                     >
                       {social.icon}
-                    </motion.a>
+                    </Link>
                   ))}
                 </div>
-              </motion.div>
+              </div>
             </div>
 
             {/* Right Side - Contact Form */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.4 }}
-            >
+            <div>
               <ContactCard />
 
               {/* Additional Info */}
-              <motion.div
-                className="mt-8 p-6 bg-gradient-to-br from-blue-500/10 to-purple-500/10 rounded-2xl border border-white/5 backdrop-blur-sm"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.5 }}
-              >
+              < div className="mt-8 p-6 bg-gradient-to-br from-blue-500/10 to-purple-500/10 rounded-2xl border border-white/5 backdrop-blur-sm">
                 <h3 className="text-lg font-semibold dark:text-white text-gray-800 mb-3">Let's Work Together</h3>
                 <p className="text-gray-300 dark:text-white text-gray-800  mb-4">
                   I'm currently looking for new opportunities. Whether you have a question or just want to say hi,
                   I'll get back to you as soon as possible!
                 </p>
-                <motion.a
+                <Link
                   href="mailto:sohanmaali4@gmail.com"
                   className="inline-flex items-center px-5 py-2.5 bg-white text-gray-900 rounded-lg font-medium hover:bg-gray-100 transition-colors text-sm"
-                  whileHover={{ scale: 1.03 }}
-                  whileTap={{ scale: 0.98 }}
                 >
                   <FiMail className="mr-2" />
                   Send me an email
-                </motion.a>
-              </motion.div>
-            </motion.div>
+                </Link>
+              </div>
+            </div>
           </div>
-        </motion.div>
+        </div>
       </div>
     </div></>
   );

@@ -1,4 +1,4 @@
-import { motion, useAnimation, useInView } from 'framer-motion';
+"use client"
 import { useCallback, useMemo, useState } from 'react';
 import { FaCode, FaDatabase, FaLaptopCode, FaNodeJs, FaReact, FaServer, FaTools } from 'react-icons/fa';
 import { SiDocker, SiMongodb, SiTypescript } from 'react-icons/si';
@@ -84,30 +84,10 @@ export default function SkillsSection() {
         setActiveCategory(categoryId);
         setHoveredSkillId(null);
     }, []);
-    const itemVariants = {
-        hidden: { opacity: 0, y: 20 },
-        show: { opacity: 1, y: 0, transition: { duration: 0.5 } }
-    };
 
-
-    // Animation variants
-    const containerVariants = {
-        hidden: { opacity: 0 },
-        show: {
-            opacity: 1,
-            transition: {
-                staggerChildren: 0.1,
-                delayChildren: 0.1
-            }
-        }
-    };
     return (
         <>
-
-            <motion.section
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
+            <section
                 className="mb-20"
             >
                 <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-8">My Skills</h2>
@@ -132,17 +112,12 @@ export default function SkillsSection() {
                         </div>
 
                         {/* Skills Grid */}
-                        <motion.div
-                            variants={containerVariants}
-                            initial="hidden"
-                            animate="show"
+                        <div
                             className="grid grid-cols-2 md:grid-cols-3 gap-4"
                         >
                             {filteredSkills.map((skill) => (
-                                <motion.div
+                                <div
                                     key={skill.id}
-                                    variants={itemVariants}
-                                    whileHover={{ scale: 1.05 }}
                                     onMouseEnter={() => handleSkillHover(skill.id)}
                                     onMouseLeave={() => handleSkillHover(null)}
                                     className={`p-4 rounded-lg transition-all cursor-pointer ${hoveredSkillId === skill.id
@@ -157,11 +132,9 @@ export default function SkillsSection() {
                                         <h3 className="font-medium text-center">{skill.name}</h3>
                                         <div className="w-full mt-2">
                                             <div className="h-1.5 bg-gray-200 dark:bg-gray-600 rounded-full overflow-hidden">
-                                                <motion.div
+                                                <div
                                                     className="h-full bg-blue-500"
-                                                    initial={{ width: 0 }}
-                                                    animate={{ width: `${skill.level}%` }}
-                                                    transition={{ duration: 1, delay: 0.2 }}
+                                                    style={{ width: `${skill.level}%` }}
                                                 />
                                             </div>
                                             <span className="text-xs text-gray-500 dark:text-gray-300 mt-1 block text-center">
@@ -169,21 +142,16 @@ export default function SkillsSection() {
                                             </span>
                                         </div>
                                     </div>
-                                </motion.div>
+                                </div>
                             ))}
-                        </motion.div>
+                        </div>
                     </div>
 
                     {/* Skill Details */}
                     <div className="w-full md:w-1/2">
-                        <motion.div
+                        <div
                             className="sticky top-6 bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg h-fit transition-all duration-300"
-                            initial={{ opacity: 0, x: 20 }}
-                            animate={{
-                                opacity: currentHoveredSkill ? 1 : 0.8,
-                                x: 0,
-                                transition: { duration: 0.3 }
-                            }}
+
                         >
                             {currentHoveredSkill ? (
                                 <div className="text-center">
@@ -222,10 +190,10 @@ export default function SkillsSection() {
                                     </p>
                                 </div>
                             )}
-                        </motion.div>
+                        </div>
                     </div>
                 </div>
-            </motion.section>
+            </section>
         </>
     )
 }

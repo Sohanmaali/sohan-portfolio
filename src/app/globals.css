@@ -1,0 +1,85 @@
+/* Reduced motion styles */
+[data-reduced-motion='true'] *,
+[data-reduced-motion='true'] *::before,
+[data-reduced-motion='true'] *::after {
+  animation-duration: 0.01ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.01ms !important;
+  scroll-behavior: auto !important;
+}
+
+@layer utilities {
+  @property --opacity {
+    syntax: '<number>';
+    inherits: false;
+    initial-value: 0;
+  }
+
+  @keyframes fadeInUp {
+    from {
+      --opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      --opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .animate {
+    --opacity: 0;
+    opacity: var(--opacity);
+    animation: fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    animation-timeline: view();
+    animation-range: entry 20% cover 40%;
+  }
+
+  /* Stagger animations */
+  .animate-delay-100 { animation-delay: 0.1s; }
+  .animate-delay-200 { animation-delay: 0.2s; }
+  .animate-delay-300 { animation-delay: 0.3s; }
+  .animate-delay-400 { animation-delay: 0.4s; }
+  .animate-delay-500 { animation-delay: 0.5s; }
+  .animate-delay-600 { animation-delay: 0.6s; }
+
+  /* Fallback for browsers that don't support animation-timeline */
+  @supports not (animation-timeline: view()) {
+    .animate {
+      opacity: 0;
+      transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    }
+    
+    .animate.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Blob animation */
+  @keyframes blob {
+    0% {
+      transform: translate(0, 0) scale(1);
+    }
+    33% {
+      transform: translate(30px, -50px) scale(1.1);
+    }
+    66% {
+      transform: translate(-20px, 20px) scale(0.9);
+    }
+    100% {
+      transform: translate(0, 0) scale(1);
+    }
+  }
+
+  .animate-blob {
+    animation: blob 7s infinite;
+  }
+
+  .animation-delay-2000 {
+    animation-delay: 2s;
+  }
+
+  .animation-delay-4000 {
+    animation-delay: 4s;
+  }
+}

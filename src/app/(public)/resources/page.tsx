@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { FaBook, FaTools, FaYoutube, FaBookOpen, FaLaptopCode, FaGraduationCap, FaLink } from 'react-icons/fa';
-import { motion } from 'framer-motion';
+
 import Link from 'next/link';
 
 type Resource = {
@@ -112,16 +112,14 @@ export default function ResourcesPage() {
 
   return (
     <>
-      <div className="min-h-screen  py-12 px-4 sm:px-6 lg:px-8  mt-20">
+      <div className="min-h-screen  py-12 px-4 sm:px-6 lg:px-8  mt-10">
         <main className="max-w-6xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
+          <div
             className="text-center mb-12"
           >
             <h1 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-3">Resources</h1>
             <p className="text-xl text-gray-600 dark:text-gray-300">A curated collection of learning materials and tools</p>
-          </motion.div>
+          </div>
 
           {/* Search and Filter */}
           <div className="mb-12">
@@ -151,8 +149,8 @@ export default function ResourcesPage() {
                   key={category.id}
                   onClick={() => setActiveCategory(category.id as any)}
                   className={`flex items-center px-4 py-2 rounded-full text-sm font-medium transition-colors ${(activeCategory === category.id)
-                      ? 'bg-blue-600 text-white'
-                      : 'bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700'
+                    ? 'bg-blue-600 text-white'
+                    : 'bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700'
                     }`}
                 >
                   {category.icon}
@@ -166,17 +164,12 @@ export default function ResourcesPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {filteredResources.length > 0 ? (
               filteredResources.map((resource) => (
-                <motion.a
+                <Link
                   key={resource.id}
                   href={resource.url}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="block group"
-                  whileHover={{ y: -5 }}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.3 }}
                 >
                   <div className="h-full bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-300">
                     <div className="p-6">
@@ -196,7 +189,7 @@ export default function ResourcesPage() {
                       </div>
                     </div>
                   </div>
-                </motion.a>
+                </Link>
               ))
             ) : (
               <div className="col-span-3 text-center py-12">
@@ -206,12 +199,8 @@ export default function ResourcesPage() {
             )}
           </div>
 
-          <motion.div
+          <div
             className="text-center mt-16"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.2 }}
           >
             <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">Have a resource to suggest?</h3>
             <p className="text-gray-600 dark:text-gray-300 mb-6 max-w-2xl mx-auto">
@@ -223,7 +212,7 @@ export default function ResourcesPage() {
             >
               Suggest a Resource
             </Link>
-          </motion.div>
+          </div>
         </main>
       </div></>
   );

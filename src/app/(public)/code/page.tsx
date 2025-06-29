@@ -1,24 +1,11 @@
 'use client';
 
-import { useEffect, useState, useCallback } from 'react';
-import { FiCode, FiCopy, FiCheck, FiSearch, FiGithub, FiStar, FiGitBranch } from 'react-icons/fi';
-import { motion, AnimatePresence } from 'framer-motion';
-import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
-import { atomDark } from 'react-syntax-highlighter/dist/cjs/styles/prism';
+import { useState, } from 'react';
+import { FiSearch, FiGithub, } from 'react-icons/fi';
 import Repositories from '@/components/code/repositories';
 import Link from 'next/link';
-
-interface Repository {
-  id: number;
-  name: string;
-  description: string;
-  url: string;
-  language: string;
-  stars: number;
-  forks: number;
-  updated: string;
-  topics: string[];
-}
+import Snippets from '@/components/code/snippets';
+import { repositories } from '@/utl/constData';
 
 type TabType = 'snippets' | 'repositories';
 
@@ -346,78 +333,7 @@ export function useFetch<T = unknown>(): UseFetchReturn<T> {
   }
 ];
 
-
 const languages = ['All', 'TypeScript', 'JavaScript', 'CSS', 'HTML'];
-
-const repositories: Repository[] = [
-  {
-    id: 1,
-    name: 'portfolio',
-    description: 'My personal portfolio website built with Next.js and Tailwind CSS',
-    url: 'https://github.com/yourusername/portfolio',
-    language: 'TypeScript',
-    stars: 24,
-    forks: 5,
-    updated: '2 days ago',
-    topics: ['nextjs', 'tailwindcss', 'typescript']
-  },
-  {
-    id: 2,
-    name: 'ecommerce-platform',
-    description: 'Full-stack e-commerce solution with React and Node.js',
-    url: 'https://github.com/yourusername/ecommerce',
-    language: 'JavaScript',
-    stars: 42,
-    forks: 12,
-    updated: '1 week ago',
-    topics: ['react', 'nodejs', 'mongodb']
-  },
-  {
-    id: 3,
-    name: 'task-manager',
-    description: 'Task management application with real-time updates',
-    url: 'https://github.com/yourusername/task-manager',
-    language: 'TypeScript',
-    stars: 18,
-    forks: 3,
-    updated: '3 days ago',
-    topics: ['react', 'typescript', 'firebase']
-  },
-  {
-    id: 4,
-    name: 'ui-components',
-    description: 'Reusable UI component library',
-    url: 'https://github.com/yourusername/ui-components',
-    language: 'TypeScript',
-    stars: 15,
-    forks: 2,
-    updated: '1 month ago',
-    topics: ['react', 'storybook', 'typescript']
-  },
-  {
-    id: 5,
-    name: 'blog-api',
-    description: 'RESTful API for blog application',
-    url: 'https://github.com/yourusername/blog-api',
-    language: 'JavaScript',
-    stars: 8,
-    forks: 1,
-    updated: '2 weeks ago',
-    topics: ['nodejs', 'express', 'mongodb']
-  },
-  {
-    id: 6,
-    name: 'data-visualization',
-    description: 'Interactive data visualization dashboard',
-    url: 'https://github.com/yourusername/data-viz',
-    language: 'TypeScript',
-    stars: 31,
-    forks: 7,
-    updated: '5 days ago',
-    topics: ['react', 'd3', 'typescript']
-  }
-];
-
 
 export default function CodePage() {
   const [activeTab, setActiveTab] = useState<TabType>('snippets');
@@ -476,19 +392,14 @@ export default function CodePage() {
     <>
 
       <div className="min-h-screen  text-gray-900 dark:text-white">
-        <div className="min-h-screen py-12 mt-20 px-4 sm:px-6 lg:px-8 ">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 ">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-              className="text-center mb-12"
-            >
+        <div className="min-h-screen py-12 mt-10 px-4 sm:px-6 lg:px-8 ">
+          <div className="max-w-8xl mx-auto sm:px-6 lg:px-8 ">
+            <div className="text-center mb-12">
               <h1 className="text-4xl font-bold mb-4">Code Snippets</h1>
               <p className="text-xl text-gray-600 dark:text-gray-300">
                 A collection of useful code snippets and projects
               </p>
-            </motion.div>
+            </div>
 
             <div className="flex justify-center mb-8">
               <div className="inline-flex rounded-md shadow-sm">
@@ -556,130 +467,20 @@ export default function CodePage() {
 
             {activeTab === 'snippets' ? (
               <>
-
-
-                <div className="grid grid-cols-1 gap-8">
-                  {filteredSnippets.length > 0 ? (
-                    filteredSnippets.map((snippet) => (
-                      <motion.div
-                        key={snippet.id}
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.3 }}
-                        className="bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden hover:shadow-lg transition-shadow duration-300"
-                      >
-                        <div
-                          className="p-5 sm:p-6 cursor-pointer"
-                          onClick={() => toggleSnippet(snippet.id)}
-                        >
-                          <div className="flex justify-between items-start gap-3">
-                            <div className="flex-1 min-w-0">
-                              <div className="flex items-center gap-2">
-                                <motion.div
-                                  animate={{ rotate: expandedSnippets[snippet.id] ? 90 : 0 }}
-                                  transition={{ duration: 0.2 }}
-                                >
-                                  <svg className="w-5 h-5 text-blue-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                                  </svg>
-                                </motion.div>
-                                <h2 className="text-xl font-semibold text-gray-900 dark:text-white">
-                                  {snippet.title}
-                                </h2>
-                              </div>
-                              <p className="mt-2 text-gray-600 dark:text-gray-300">
-                                {snippet.description}
-                              </p>
-                              <div className="mt-3 flex flex-wrap gap-2 mb-4">
-                                {snippet.tags.map((tag) => (
-                                  <span
-                                    key={tag}
-                                    className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${selectedTag === tag
-                                      ? 'bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-100'
-                                      : 'bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-200'
-                                      }`}
-                                    onClick={(e) => {
-                                      e.stopPropagation();
-                                      setSelectedTag(selectedTag === tag ? null : tag);
-                                    }}
-                                  >
-                                    {tag}
-                                  </span>
-                                ))}
-                              </div>
-                            </div>
-                            <button
-                              onClick={(e) => {
-                                e.stopPropagation();
-                                copyToClipboard(snippet.code, snippet.id);
-                              }}
-                              className="p-2 text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 transition-colors"
-                              title="Copy to clipboard"
-                            >
-                              {copiedSnippetId === snippet.id ? (
-                                <FiCheck className="h-5 w-5 text-green-500" />
-                              ) : (
-                                <FiCopy className="h-5 w-5" />
-                              )}
-                            </button>
-                          </div>
-
-                          <AnimatePresence>
-                            {expandedSnippets[snippet.id] && (
-                              <motion.div
-                                initial={{ height: 0, opacity: 0 }}
-                                animate={{ height: 'auto', opacity: 1 }}
-                                exit={{ height: 0, opacity: 0 }}
-                                transition={{ duration: 0.2 }}
-                                className="overflow-hidden"
-                              >
-                                <div className="mt-4 rounded-lg overflow-hidden border border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-700/50">
-                                  <div className="relative">
-                                    <SyntaxHighlighter
-                                      language={snippet.language}
-                                      style={atomDark}
-                                      customStyle={{
-                                        margin: 0,
-                                        fontSize: '0.875rem',
-                                        background: '#1a1b26',
-                                        borderRadius: '0.5rem',
-                                        padding: '1.5rem',
-                                        overflowX: 'auto'
-                                      }}
-                                      showLineNumbers
-                                    >
-                                      {snippet.code}
-                                    </SyntaxHighlighter>
-                                  </div>
-                                </div>
-                              </motion.div>
-                            )}
-                          </AnimatePresence>
-                        </div>
-                      </motion.div>
-                    ))
-                  ) : (
-                    <div className="col-span-3 text-center py-12">
-                      <FiCode className="mx-auto h-12 w-12 text-gray-400" />
-                      <h3 className="mt-2 text-lg font-medium text-gray-900 dark:text-white">No snippets found</h3>
-                      <p className="mt-1 text-gray-500 dark:text-gray-400">Try adjusting your search or filter criteria</p>
-                      <button
-                        onClick={() => {
-                          setSearchTerm('');
-                          setSelectedTag(null);
-                        }}
-                        className="mt-4 inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-blue-700 bg-blue-100 hover:bg-blue-200 dark:text-blue-200 dark:bg-blue-900/30 dark:hover:bg-blue-800/50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
-                      >
-                        Clear all filters
-                      </button>
-                    </div>
-                  )}
-                </div>
+                <Snippets
+                  filteredSnippets={filteredSnippets}
+                  toggleSnippet={toggleSnippet}
+                  expandedSnippets={expandedSnippets}
+                  selectedTag={selectedTag}
+                  setSelectedTag={setSelectedTag}
+                  copyToClipboard={copyToClipboard}
+                  copiedSnippetId={copiedSnippetId}
+                  setSearchTerm={setSearchTerm}
+                />
               </>
             ) : (
               <div className="mt-8">
-                <Repositories 
+                <Repositories
                   searchTerm={searchTerm}
                   selectedLanguage={selectedLanguage}
                   languages={languages}
@@ -688,13 +489,7 @@ export default function CodePage() {
               </div>
             )}
 
-            <motion.div
-              className="text-center mt-16"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.2 }}
-            >
+            <div className="text-center mt-16">
               <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">Want to see more?</h3>
               <p className="text-gray-600 dark:text-gray-300 mb-6 max-w-2xl mx-auto">
                 Check out my GitHub profile for more code examples and projects.
@@ -708,7 +503,7 @@ export default function CodePage() {
                 View on GitHub
                 <FiGithub className="ml-2 h-5 w-5" />
               </Link>
-            </motion.div>
+            </div>
           </div>
         </div>
       </div>

@@ -1,7 +1,6 @@
 'use client';
 
 import { useState, useRef, useEffect } from 'react';
-import { motion, useDragControls } from 'framer-motion';
 import { FiMessageSquare, FiX, FiMinimize2, FiMaximize2, FiSend, FiTrash2 } from 'react-icons/fi'; // Added FiTrash2 icon
 
 type Message = {
@@ -25,8 +24,6 @@ const ChatBot = () => {
 
   const [messages, setMessages] = useState<Message[]>([initialMessage]);
 
-  const controls = useDragControls();
-  const chatContainerRef = useRef<HTMLDivElement>(null);
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
   const scrollToBottom = () => {
@@ -40,8 +37,8 @@ const ChatBot = () => {
   // Generate bot response based on user input
   const generateBotResponse = (userInput: string): string => {
     const input = userInput.toLowerCase().trim();
-    
-    if (input.includes('hello') || input.includes('hi') || input.includes('hey')||input.includes('hy')) {
+
+    if (input.includes('hello') || input.includes('hi') || input.includes('hey') || input.includes('hy')) {
       return "Hello! I'm Sohan's assistant. How can I help you today?";
     } else if (input.includes('project') || input.includes('work') || input.includes('portfolio')) {
       return "You can check out my projects in the 'Projects' section of my portfolio. Would you like me to tell you more about any specific project?";
@@ -93,7 +90,7 @@ const ChatBot = () => {
       timestamp: new Date(),
       isTyping: true
     };
-    
+
     setMessages(prev => [...prev, typingIndicator]);
 
     // Simulate bot thinking time
@@ -123,51 +120,34 @@ const ChatBot = () => {
   };
 
   const clearChat = () => {
-    setMessages([{...initialMessage, id: 1, timestamp: new Date()}]);
+    setMessages([{ ...initialMessage, id: 1, timestamp: new Date() }]);
   };
 
   if (!isOpen) {
     return (
-      <motion.button
+      <button
         className="fixed bottom-8 right-8 z-50 w-16 h-16 rounded-full bg-blue-600 text-white shadow-lg flex items-center justify-center hover:bg-blue-700 transition-colors"
         onClick={toggleChat}
-        whileHover={{ scale: 1.05 }}
-        whileTap={{ scale: 0.95 }}
         aria-label="Open chat"
       >
         <FiMessageSquare className="w-6 h-6" />
-      </motion.button>
+      </button>
     );
   }
 
   return (
-    <motion.div
+    <div
       className="fixed bottom-4 sm:bottom-8 right-2 sm:right-4 md:right-8 z-50 w-[calc(100%-1rem)] sm:w-96 max-w-full bg-white dark:bg-gray-800 rounded-xl shadow-2xl overflow-hidden flex flex-col"
-      style={{ 
+      style={{
         height: isMinimized ? '60px' : '80vh',
         maxHeight: 'calc(100vh - 2rem)',
         minHeight: isMinimized ? '60px' : '300px',
         touchAction: 'none',
       }}
-      drag
-      dragConstraints={{
-        top: -window.innerHeight + 100,
-        left: -window.innerWidth + 50,
-        right: 0,
-        bottom: 0,
-      }}
-      dragElastic={0.1}
-      dragMomentum={false}
-      dragControls={controls}
-      initial={{ opacity: 0, y: 20, scale: 0.9 }}
-      animate={{ opacity: 1, y: 0, scale: 1 }}
-      exit={{ opacity: 0, y: 20, scale: 0.9 }}
-      transition={{ type: 'spring', damping: 30, stiffness: 400 }}
     >
       {/* Header */}
-      <div 
+      <div
         className="px-4 py-3 bg-blue-600 text-white flex items-center justify-between cursor-move"
-        onPointerDown={(e) => controls.start(e)}
       >
         <h3 className="font-medium text-sm sm:text-base">Chat with me</h3>
         <div className="flex items-center space-x-2">
@@ -211,13 +191,12 @@ const ChatBot = () => {
                   className={`flex ${message.sender === 'user' ? 'justify-end' : 'justify-start'}`}
                 >
                   <div
-                    className={`max-w-[85%] xs:max-w-xs sm:max-w-md rounded-2xl px-4 py-3 text-sm sm:text-base ${
-                      message.sender === 'user'
-                        ? 'bg-blue-600 text-white rounded-br-none'
-                        : message.isTyping
+                    className={`max-w-[85%] xs:max-w-xs sm:max-w-md rounded-2xl px-4 py-3 text-sm sm:text-base ${message.sender === 'user'
+                      ? 'bg-blue-600 text-white rounded-br-none'
+                      : message.isTyping
                         ? 'bg-gray-100 dark:bg-gray-700 text-transparent animate-pulse rounded-bl-none'
                         : 'bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-200 rounded-bl-none'
-                    }`}
+                      }`}
                   >
                     {message.isTyping ? (
                       <div className="flex space-x-1 items-center">
@@ -262,7 +241,7 @@ const ChatBot = () => {
           </form>
         </>
       )}
-    </motion.div>
+    </div>
   );
 };
 

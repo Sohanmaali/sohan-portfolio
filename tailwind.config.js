@@ -70,14 +70,24 @@ module.exports = {
       },
       animation: {
         'fade-in': 'fadeIn 0.5s ease-in-out',
+        'fade-up': 'fadeInUp 0.5s ease-out forwards',
         'slide-up': 'slideUp 0.5s ease-in-out',
         'slide-down': 'slideDown 0.5s ease-in-out',
         'slide-in-right': 'slideInRight 0.5s ease-in-out',
+        'float': 'float 6s ease-in-out infinite',
       },
       keyframes: {
         fadeIn: {
           '0%': { opacity: '0' },
           '100%': { opacity: '1' },
+        },
+        fadeInUp: {
+          '0%': { transform: 'translateY(20px)', opacity: '0' },
+          '100%': { transform: 'translateY(0)', opacity: '1' },
+        },
+        float: {
+          '0%, 100%': { transform: 'translateY(0)' },
+          '50%': { transform: 'translateY(-20px)' },
         },
         slideUp: {
           '0%': { transform: 'translateY(20px)', opacity: '0' },
@@ -92,8 +102,26 @@ module.exports = {
           '100%': { transform: 'translateX(0)', opacity: '1' },
         },
       },
+      animationDelay: {
+        '100': '100ms',
+        '200': '200ms',
+        '300': '300ms',
+        '400': '400ms',
+        '500': '500ms',
+      },
     },
   },
-  plugins: [],
+  plugins: [
+    function({ matchUtilities, theme }) {
+      matchUtilities(
+        {
+          'animate-delay': (value) => ({
+            'animation-delay': value,
+          }),
+        },
+        { values: theme('animationDelay') }
+      )
+    },
+  ],
   darkMode: 'class',
 }

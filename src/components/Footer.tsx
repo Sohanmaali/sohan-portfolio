@@ -1,8 +1,7 @@
 'use client';
 
 import { FaGithub, FaLinkedin, FaTwitter, FaEnvelope, FaHome, FaUser, FaCode, FaBriefcase, FaFileAlt, FaInstagram } from 'react-icons/fa';
-import { motion } from 'framer-motion';
-import Image from 'next/image';
+
 import Link from 'next/link';
 
 const Footer = () => {
@@ -76,19 +75,17 @@ const Footer = () => {
             </div>
             <div className="flex space-x-4 pt-2">
               {socialLinks.map((link, index) => (
-                <motion.a
+                <Link
                   key={link.name}
                   href={link.url}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-gray-600 hover:text-blue-600 dark:text-gray-400 dark:hover:text-blue-400 transition-colors"
-                  whileHover={{ y: -2, scale: 1.1 }}
-                  whileTap={{ scale: 0.95 }}
                   title={link.name}
                   aria-label={link.name}
                 >
                   {link.icon}
-                </motion.a>
+                </Link>
               ))}
             </div>
           </div>
@@ -99,14 +96,13 @@ const Footer = () => {
             <ul className="space-y-2">
               {quickLinks.map((link) => (
                 <li key={link.name}>
-                  <motion.a
+                  <Link
                     href={link.href}
                     className="flex items-center text-gray-600 hover:text-blue-600 dark:text-gray-400 dark:hover:text-blue-400 transition-colors"
-                    whileHover={{ x: 5 }}
                   >
                     {link.icon}
                     {link.name}
-                  </motion.a>
+                  </Link>
                 </li>
               ))}
             </ul>

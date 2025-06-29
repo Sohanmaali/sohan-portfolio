@@ -1,20 +1,5 @@
-'use client';
-
-import { motion } from 'framer-motion';
 import { FiCode, FiServer, FiTool, FiDatabase, FiLayers, FiSmartphone, FiShield, FiArrowRight } from 'react-icons/fi';
 import Link from 'next/link';
-
-
-const stagger = {
-    hidden: { opacity: 0 },
-    visible: {
-        opacity: 1,
-        transition: {
-            staggerChildren: 0.1,
-            delayChildren: 0.3
-        }
-    }
-};
 
 const services = [
     {
@@ -149,29 +134,13 @@ const services = [
     }
 ];
 
-const fadeInUp = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-        opacity: 1,
-        y: 0,
-        transition: {
-            duration: 0.6,
-            ease: [0.16, 1, 0.3, 1]
-        }
-    }
-};
 export default function MyServices() {
     return (
-        <> <motion.div
-            initial="hidden"
-            animate="visible"
-            variants={stagger}
-        >
+        <>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 {services.map((service, index) => (
-                    <motion.div
+                    <div
                         key={index}
-                        variants={fadeInUp}
                         className="group bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 dark:border-gray-700 hover:border-blue-200 dark:hover:border-blue-900/50 overflow-hidden relative"
                     >
                         <div className="absolute inset-0 bg-gradient-to-br from-blue-50 to-transparent dark:from-blue-900/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 -z-0"></div>
@@ -225,12 +194,11 @@ export default function MyServices() {
                                 </Link>
                             </div>
                         </div>
-                    </motion.div>
+                    </div>
                 ))}
             </div>
 
 
-        </motion.div>
         </>
     );
 }

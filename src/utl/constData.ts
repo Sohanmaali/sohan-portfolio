@@ -14,8 +14,16 @@ export const projects = [
         description: 'Developed a full-stack MERN web application to streamline scrap material sales. Implemented user authentication and role-based access control for sellers and admins. Built a dynamic dashboard for managing listings, prices, and transactions. Integrated secure payments, optimized RESTful APIs, and enhanced UX with a responsive design and real-time notifications.',
         tags: ['Next.js', "React", "Node.js", "MongoDB", "Stripe", "Nest", "Socket.io", "Bootstrap", "Typescript", "Redis"],
 
-        demo: 'https://scrapify-client-alpha.vercel.app//',
+        demo: 'https://scrapify-client-alpha.vercel.app',
         image: '/images/projects/scrapify.png'
+    },
+    {
+        title: 'Portfolio Website',
+        description: 'Developed a personal portfolio website to showcase my projects, skills, and experience. Built a modern, responsive design using Tailwind CSS and optimized for performance. Implemented a blog feature using MDX and Next.js. Created a custom hook to handle dark mode and system preference detection. Integrated a chatbot using Dialogflow and EmailJS for contact form.',
+        tags: ['Next.js', "React", "Node.js", "Typescript",],
+
+        demo: 'https://showcase-with-sohan.vercel.app',
+        image: '/images/projects/portFolio.png'
     },
 ];
 
@@ -102,4 +110,83 @@ export const experience = [
     }
 ];
 
+interface Repository {
+    id: number;
+    name: string;
+    description: string;
+    url: string;
+    language: string;
+    stars: number;
+    forks: number;
+    updated: string;
+    topics: string[];
+}
 
+export const repositories: Repository[] = [
+    {
+        id: 1,
+        name: 'portfolio',
+        description: 'A comprehensive platform for buying and selling products online. This project aims to provide a seamless experience for users to list, browse, and purchase products.',
+        url: 'https://github.com/Sohanmaali/scrapify-client',
+        language: 'TypeScript',
+        stars: 24,
+        forks: 5,
+        updated: '2 days ago',
+        topics: ['nextjs', 'tailwindcss', 'typescript']
+    },
+    {
+        id: 2,
+        name: 'Interview-Preparation',
+        description: 'This repository contains solutions to common interview problems. It is intended to serve as a reference for anyone preparing for technical interviews.',
+        url: 'https://github.com/Sohanmaali/Interview-Preparation',
+        language: 'JavaScript',
+        stars: 42,
+        forks: 12,
+        updated: '1 week ago',
+        topics: ['react', 'nodejs', 'mongodb']
+    },
+    {
+        id: 3,
+        name: 'Chat App',
+        description: 'A mobile-first application to discover and save recipes with filtering by ingredients and dietary restrictions.',
+        url: 'https://github.com/Sohanmaali/Chat-app',
+        language: 'TypeScript',
+        stars: 18,
+        forks: 3,
+        updated: '3 days ago',
+        topics: ['react', 'typescript', 'firebase', 'socket.io', 'tailwindcss']
+    },
+    {
+        id: 4,
+        name: 'Easy_solution',
+        description: 'A project of helping nature. Here, people can share their skills/expertise with others who need help. It can be anything from programming to home repair. The idea is to create a community where people are willing to help each other without expecting anything in return.',
+        url: 'https://github.com/Sohanmaali/Easy_solution',
+        language: 'JavaScript',
+        stars: 15,
+        forks: 2,
+        updated: '1 month ago',
+        topics: ['react', "nodejs", "express", "mongodb"]
+    },
+    // {
+    //     id: 5,
+    //     name: 'blog-api',
+    //     description: 'RESTful API for blog application',
+    //     url: 'https://github.com/yourusername/blog-api',
+    //     language: 'JavaScript',
+    //     stars: 8,
+    //     forks: 1,
+    //     updated: '2 weeks ago',
+    //     topics: ['nodejs', 'express', 'mongodb']
+    // },
+    // {
+    //     id: 6,
+    //     name: 'data-visualization',
+    //     description: 'Interactive data visualization dashboard',
+    //     url: 'https://github.com/yourusername/data-viz',
+    //     language: 'TypeScript',
+    //     stars: 31,
+    //     forks: 7,
+    //     updated: '5 days ago',
+    //     topics: ['react', 'd3', 'typescript']
+    // }
+];

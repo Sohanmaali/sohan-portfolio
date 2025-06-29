@@ -6,19 +6,21 @@ import CTASection from '@/components/home/CTASection';
 export default function Home() {
 
   return (
-    <div className="pt-16 overflow-x-hidden relative">
+    <>
+      <div className="pt-16 overflow-x-hidden relative">
 
-      {/* Hero Section */}
-      <HeroSection />
+        {/* Hero Section */}
+        <HeroSection />
 
-      {/* About Section */}
-      <AboutSection />
+        {/* About Section */}
+        <AboutSection />
 
-      {/* Projects Section */}
-      <ProjectsSection />
+        {/* Projects Section */}
+        <ProjectsSection />
 
-      {/* CTA Section */}
-      <CTASection />
-    </div>
+        {/* CTA Section */}
+        <CTASection />
+      </div>
+    </>
   );
 } 
